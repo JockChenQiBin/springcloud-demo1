@@ -1,0 +1,25 @@
+server:
+  port: 8759
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://localhost:9001/eureka/
+      defaultZone: http://eureka9001.com:9001/eureka/,http://eureka9002.com:9002/eureka/,http://eureka9003.com:9003/eureka/
+  instance:
+      instance-id: microservicecloud-provider8759-hystrix               #自定义微服务名称信息
+      prefer-ip-address: true               #访问路径可以显示IP地址
+      status-page-url-path: /info
+info:
+  app.name: microservice-hi-provider
+  company.name: www.chenqibin.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+spring:
+  application:
+    name: microservice-hi-provider                                      #微服务的名字
+#hystrix dashboard 服务监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

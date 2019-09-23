@@ -1,0 +1,35 @@
+server:
+  port: 8766
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka9001.com:9001/eureka/,http://eureka9002.com:9002/eureka/,http://eureka9003.com:9003/eureka/
+  instance:
+      instance-id: microservicecloud-customer8766-zuul                                 #自定义微服务名称信息
+      prefer-ip-address: true                                   #访问路径可以显示IP地址
+info:
+  app.name: microservice-hi-provider
+  company.name: www.chenqibin.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+spring:
+  application:
+    name: microservice-customer8766-zuul
+zuul:
+  routes:
+    # 如果不配置api，需要在访问地址中加上服务唯一标识，例：http://zull8766.com:8766/microservice-hi-provider/hi/chen
+    # 服务唯一标识也可以是客户端（customer），例：http://zull8766.com:8766/microservice-customer8764/hi?name=chen
+#    hiapi:
+#      path: /hiapi/**
+#      serviceId: eureka-client
+#    ribbonapi:
+#      path: /ribbonapi/**
+#      serviceId: eureka-ribbon-client
+#    feignapi:
+#      path: /feignapi/**
+#      serviceId: microservice-hi-provider
+    myapi:                              #自定义API配置
+      path: /hi-provider/**             #设置访问服务别名，防止暴露服务名，如果不设置默认为：/myapi/**
+      serviceId: microservice-hi-provider
+  ignored-services: microservice-hi-provider  #忽略带真实服务名的请求，只能通过指定的别名进行访问服务
+  prefix: /myprefix   #设置访问前缀

@@ -1,5 +1,7 @@
 package com.example.springcloudcustomer;
 
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RoundRobinRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -19,5 +21,10 @@ public class SpringcloudCustomerApplication {
     @LoadBalanced
     RestTemplate restTemplate(){
         return new RestTemplate();
+    }
+
+    @Bean
+    public IRule myRule(){
+        return new RoundRobinRule(); 	//轮询策略
     }
 }

@@ -1,0 +1,8 @@
+#系统级配置文件
+spring:
+  cloud:
+    config:
+      name: springcloud-customer-feign-config-client  #需要从github上读取的资源名，没有yml后缀，springcloud-customer-feign-config-client.yml为已经传到github的配置文件
+      profile: default     #dev/default/prod/test，表示远程github上的application-{自定义名称：dev/default/prod/test}.yml配置文件，yml支持多文档块的方式
+      label: master
+      uri: http://localhost:4001  #config的服务端地址，等config的服务端和客户端启动后，客户端去查找这个指定的config的服务端，通过服务端获取github上配置文件信息

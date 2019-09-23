@@ -1,0 +1,18 @@
+#端口号
+server:
+  port: 9002
+#  servlet:
+#    context-path: /eureka
+eureka:
+  instance:
+    hostname: eureka9002.com
+  client:
+    # 表示是否将自己注册到Eureka Server，默认为true
+    register-with-eureka: false
+    # 表示是否从Eureka Server获取注册信息，默认为true
+    fetch-registry: false
+    service-url:
+      # eureka.client.serviceUrl.defaultZone ：设置与Eureka Server交互的地址，
+      #查询服务和注册服务都需要依赖这个地址。默认是
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://eureka9001.com:9001/eureka/,http://eureka9003.com:9003/eureka/

@@ -11,10 +11,18 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class HelloService {
+    //	private static String REST_URL_PREFIX = "http://localhost:8762";
+    /*直接根据微服务名调用，而不再是根据地址和端口了，运用了eureka的发现功能*/
+    private static String REST_URL_PREFIX = "http://microservice-hi-provider";
+
+    private final RestTemplate restTemplate;
+
     @Autowired
-    RestTemplate restTemplate;
+    public HelloService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public String hi(String name) {
-        return restTemplate.getForObject("http://SERVICE-PRODUCER/hi?name=" + name, String.class);
+        return restTemplate.getForObject(REST_URL_PREFIX + "/hi/" + name, String.class);
     }
 }

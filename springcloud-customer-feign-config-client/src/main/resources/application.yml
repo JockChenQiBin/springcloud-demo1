@@ -1,0 +1,16 @@
+#server:
+#  port: 8764
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://eureka9001.com:9001/eureka/,http://eureka9002.com:9002/eureka/,http://eureka9003.com:9003/eureka/
+#  instance:
+#      instance-id: microservicecloud-customer8764                                 #自定义微服务名称信息
+#      prefer-ip-address: true                                   #访问路径可以显示IP地址
+#用户级配置文件，相同配置优先级：系统级>用户级
+spring:
+  application:
+    name: microservice-customer-feign-config-client
+  profiles:
+    active: dev
